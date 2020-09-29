@@ -10,6 +10,7 @@ import nl.rabobank.powerofattorney.application.attorney.PowerOfAttorneyRepositor
 import nl.rabobank.powerofattorney.domain.account.Account;
 import nl.rabobank.powerofattorney.domain.account.User;
 import nl.rabobank.powerofattorney.domain.attorney.PowerOfAttorney;
+import nl.rabobank.powerofattorney.domain.card.Card;
 import nl.rabobank.powerofattorney.domain.card.CreditCard;
 
 @Service
@@ -27,30 +28,24 @@ public class AuthorizationService {
         return hasPowerOfAttorneyToView(loggedInUser, account);
     }
 
-    // TODO: introduce Card interface when implement debit card
-    public boolean isAllowedToView(User loggedInUser, CreditCard card) {
+    public boolean isAllowedToView(User loggedInUser, Card card) {
         if (loggedInUser.equals(card.getCardHolder())) {
             return true;
         }
+
         return hasPowerOfAttorneyToView(loggedInUser, card);
     }
 
     private boolean hasPowerOfAttorneyToView(User loggedInUser, Account account) {
-        return powerOfAttorneyRepository.findAll().stream()
-                .filter(matchingAccount(account))
+        return powerOfAttorneyRepository.findWithAccountId(account.getId()).stream()
                 .filter(authorizedToView())
                 .anyMatch(isGrantedAccess(loggedInUser));
     }
 
-    private boolean hasPowerOfAttorneyToView(User loggedInUser, CreditCard card) {
-        return powerOfAttorneyRepository.findAll().stream()
-                .filter(matchingCard(card))
+    private boolean hasPowerOfAttorneyToView(User loggedInUser, Card card) {
+        return powerOfAttorneyRepository.findWithCardId(card.getId()).stream()
                 .filter(authorizedToView())
                 .anyMatch(isGrantedAccess(loggedInUser));
-    }
-
-    private Predicate<PowerOfAttorney> matchingCard(CreditCard card) {
-        return poa -> poa.getCardIds().contains(card.getId());
     }
 
     private Predicate<PowerOfAttorney> isGrantedAccess(User loggedInUser) {
@@ -61,7 +56,5 @@ public class AuthorizationService {
         return poa -> poa.getAuthorizations().contains(VIEW);
     }
 
-    private Predicate<PowerOfAttorney> matchingAccount(Account account) {
-        return poa -> poa.getAccountId().equals(account.getId());
-    }
+
 }

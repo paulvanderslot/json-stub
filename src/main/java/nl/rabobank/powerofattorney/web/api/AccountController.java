@@ -1,4 +1,4 @@
-package nl.rabobank.powerofattorney.web;
+package nl.rabobank.powerofattorney.web.api;
 
 import static nl.rabobank.powerofattorney.web.AuthenticationHelper.getLoggedInUser;
 

@@ -10,6 +10,8 @@ import static nl.rabobank.powerofattorney.storage.Constants.SUPER_DUPER_EMPLOYEE
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Predicate;
 
 import org.springframework.stereotype.Repository;
 
@@ -26,6 +28,22 @@ public class InMemoryPowerOfAttorneyRepository implements PowerOfAttorneyReposit
 
     @Override public Collection<PowerOfAttorney> findAll() {
         return allPowerOfAttorneys;
+    }
+
+    @Override public Optional<PowerOfAttorney> findWithCardId(CardId cardId) {
+        return allPowerOfAttorneys.stream().filter(matchingCardId(cardId)).findAny();
+    }
+
+    @Override public Optional<PowerOfAttorney> findWithAccountId(AccountId accountId) {
+        return allPowerOfAttorneys.stream().filter(matchingAccountId(accountId)).findAny();
+    }
+
+    private Predicate<PowerOfAttorney> matchingCardId(CardId cardId) {
+        return poa -> poa.getCardIds().contains(cardId);
+    }
+
+    private Predicate<PowerOfAttorney> matchingAccountId(AccountId accountId) {
+        return poa -> poa.getAccountId().equals(accountId);
     }
 
     private List<PowerOfAttorney> createPowerOfAttorneys() {

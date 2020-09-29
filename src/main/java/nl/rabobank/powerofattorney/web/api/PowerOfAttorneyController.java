@@ -1,4 +1,4 @@
-package nl.rabobank.powerofattorney.web;
+package nl.rabobank.powerofattorney.web.api;
 
 import java.util.List;
 
