@@ -5,6 +5,9 @@ import static nl.rabobank.powerofattorney.domain.Authorization.PAYMENT;
 import static nl.rabobank.powerofattorney.domain.Authorization.VIEW;
 import static nl.rabobank.powerofattorney.domain.attorney.Direction.GIVEN;
 import static nl.rabobank.powerofattorney.domain.attorney.Direction.RECEIVED;
+import static nl.rabobank.powerofattorney.storage.Constants.ARAGORN;
+import static nl.rabobank.powerofattorney.storage.Constants.BOROMIR;
+import static nl.rabobank.powerofattorney.storage.Constants.FRODO;
 import static nl.rabobank.powerofattorney.storage.Constants.SUPER_DUPER_COMPANY;
 import static nl.rabobank.powerofattorney.storage.Constants.SUPER_DUPER_EMPLOYEE;
 
@@ -18,8 +21,10 @@ import org.springframework.stereotype.Repository;
 import nl.rabobank.powerofattorney.application.attorney.PowerOfAttorneyRepository;
 import nl.rabobank.powerofattorney.domain.account.AccountId;
 import nl.rabobank.powerofattorney.domain.account.User;
+import nl.rabobank.powerofattorney.domain.attorney.GroupGrantee;
 import nl.rabobank.powerofattorney.domain.attorney.PowerOfAttorney;
 import nl.rabobank.powerofattorney.domain.attorney.PowerOfAttorneyId;
+import nl.rabobank.powerofattorney.domain.attorney.SingleGrantee;
 import nl.rabobank.powerofattorney.domain.card.CardId;
 
 @Repository
@@ -59,7 +64,8 @@ public class InMemoryPowerOfAttorneyRepository implements PowerOfAttorneyReposit
                 PowerOfAttorney.builder()
                         .id(new PowerOfAttorneyId("0001"))
                         .grantor(SUPER_DUPER_COMPANY)
-                        .grantee(new User("Fellowship of the ring")) //TODO: User group ipv User
+                        .grantee(new GroupGrantee("Fellowship of the ring",
+                                List.of(BOROMIR, ARAGORN, FRODO)))
                         .accountId(new AccountId("123456789"))
                         .direction(GIVEN)
                         .authorizations(List.of(VIEW, PAYMENT, DEBIT_CARD))
@@ -68,7 +74,7 @@ public class InMemoryPowerOfAttorneyRepository implements PowerOfAttorneyReposit
                 , PowerOfAttorney.builder()
                         .id(new PowerOfAttorneyId("0002"))
                         .grantor(SUPER_DUPER_COMPANY)
-                        .grantee(SUPER_DUPER_EMPLOYEE)
+                        .grantee(new SingleGrantee(SUPER_DUPER_EMPLOYEE.getName()))
                         .accountId(new AccountId("987654321"))
                         .direction(GIVEN)
                         .authorizations(List.of(VIEW, PAYMENT, DEBIT_CARD))
@@ -77,7 +83,7 @@ public class InMemoryPowerOfAttorneyRepository implements PowerOfAttorneyReposit
                 , PowerOfAttorney.builder()
                         .id(new PowerOfAttorneyId("0003"))
                         .grantor(SUPER_DUPER_COMPANY)
-                        .grantee(SUPER_DUPER_EMPLOYEE)
+                        .grantee(new SingleGrantee(SUPER_DUPER_EMPLOYEE.getName()))
                         .accountId(new AccountId("343434343"))
                         .direction(GIVEN)
                         .authorizations(List.of(VIEW, PAYMENT))
@@ -86,7 +92,7 @@ public class InMemoryPowerOfAttorneyRepository implements PowerOfAttorneyReposit
                 , PowerOfAttorney.builder()
                         .id(new PowerOfAttorneyId("0004"))
                         .grantor(SUPER_DUPER_EMPLOYEE)
-                        .grantee(SUPER_DUPER_COMPANY)
+                        .grantee(new SingleGrantee(SUPER_DUPER_EMPLOYEE.getName()))
                         .accountId(new AccountId("123123123"))
                         .direction(RECEIVED)
                         .authorizations(List.of(VIEW, PAYMENT))

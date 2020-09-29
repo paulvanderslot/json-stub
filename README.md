@@ -28,25 +28,27 @@ This awesome web service provides REST API for accessing power of attorney infor
   - Impress us!
 
 # How to's
-## Run
-mvn clean spring-boot:run
-
+- Start app: 'mvn clean spring-boot:run'
+- Swagger: 'http://localhost:8080/swagger-ui.html'
 
 # Steps to take
 - [x] Spring boot plumming
 - [x] Make Rest Resources 
 - [x] Swagger
-
 - [x] start with Accounts
 - [x] Continue with Cards
 - [x] Power of Attorneys
-- [] How to deal with groups (Fellowship)
-- [] find out domain logic and aggregates
-- [] outside in -> add logic
+- [x] How to deal with groups (Fellowship)
+- [x] find out domain logic and aggregates
+- [x] outside in -> add logic
+- [] transforming to the right structure
 - [] exceptions mapping to http status codes
 - [] test direction of dependencies with archunit
 - [x] blocked cards and ended accounts can be viewed
 - [] validate domain primitives
-
-- [] Static repositories -> read only
+- [x] Static repositories -> read only
 - [x] hexagonal at start
+- [] check TODO's
+- [] more test coverage
+- [] endpoint tests with testdata
+

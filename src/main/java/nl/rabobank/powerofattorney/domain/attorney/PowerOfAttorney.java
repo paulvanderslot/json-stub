@@ -14,7 +14,7 @@ import nl.rabobank.powerofattorney.domain.card.CardId;
 public class PowerOfAttorney {
     PowerOfAttorneyId id;
     User grantor; //account owner (niet nodig in model, wel in API)
-    User grantee; //account owner? -> Fellowship is a group, with cards for individuals
+    Grantee grantee;
     AccountId accountId; //account id of grantor
     Direction direction; //unclear if this field matters. Grantor and accountId always seem to match.
     Collection<Authorization> authorizations;

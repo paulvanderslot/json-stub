@@ -2,7 +2,6 @@ package nl.rabobank.powerofattorney.application;
 
 import static nl.rabobank.powerofattorney.domain.Authorization.VIEW;
 
-import java.util.Collection;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -57,11 +56,11 @@ public class AuthorizationService {
     private boolean isAuthorizedToViewAndGrantedAccess(Optional<PowerOfAttorney> powerOfAttorney, User loggedInUser) {
         return powerOfAttorney.stream()
                 .filter(authorizedToView())
-                .anyMatch(isGrantedAccess(loggedInUser));
+                .anyMatch(poa -> isGrantedAccess(loggedInUser, poa));
     }
 
-    private Predicate<PowerOfAttorney> isGrantedAccess(User loggedInUser) {
-        return poa -> poa.getGrantee().equals(loggedInUser);
+    private boolean isGrantedAccess(User loggedInUser, PowerOfAttorney poa) {
+        return poa.getGrantee().isGrantedAccess(loggedInUser);
     }
 
     private Predicate<PowerOfAttorney> authorizedToView() {

@@ -4,6 +4,9 @@ import static nl.rabobank.powerofattorney.domain.card.CardStatus.ACTIVE;
 import static nl.rabobank.powerofattorney.domain.card.Period.PER_DAY;
 import static nl.rabobank.powerofattorney.domain.card.Period.PER_MONTH;
 import static nl.rabobank.powerofattorney.domain.card.Period.PER_WEEK;
+import static nl.rabobank.powerofattorney.storage.Constants.ARAGORN;
+import static nl.rabobank.powerofattorney.storage.Constants.BOROMIR;
+import static nl.rabobank.powerofattorney.storage.Constants.FRODO;
 
 import java.util.List;
 import java.util.Optional;
@@ -36,7 +39,7 @@ public class InMemoryCardRepository implements CardRepository {
         return List.of(CreditCard.builder()
                 .id(new CardId("3333"))
                 .cardNumber("5075")
-                .cardHolder(new User("Boromir"))
+                .cardHolder(BOROMIR)
                 .sequenceNumber(1)
                 .status(ACTIVE)
                 .monthlyLimit(3000)
@@ -48,7 +51,7 @@ public class InMemoryCardRepository implements CardRepository {
         return List.of(DebitCard.builder()
                         .id(new CardId("1111"))
                         .cardNumber("1234")
-                        .cardHolder(new User("Frodo Baggins"))
+                        .cardHolder(FRODO)
                         .sequenceNumber(5)
                         .status(ACTIVE)
                         .atmLimit(new Limit(3000, PER_WEEK))
@@ -58,7 +61,7 @@ public class InMemoryCardRepository implements CardRepository {
                 DebitCard.builder()
                         .id(new CardId("2222"))
                         .cardNumber("6527")
-                        .cardHolder(new User("Aragorn"))
+                        .cardHolder(ARAGORN)
                         .sequenceNumber(1)
                         .status(ACTIVE)
                         .contactless(true)
