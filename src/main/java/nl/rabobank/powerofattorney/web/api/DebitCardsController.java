@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import nl.rabobank.powerofattorney.application.cards.CardService;
+import nl.rabobank.powerofattorney.application.cards.CardsService;
 import nl.rabobank.powerofattorney.domain.card.CardId;
 import nl.rabobank.powerofattorney.domain.card.DebitCard;
 
 @RestController
-@RequestMapping(path = "/debitcard", produces = MediaType.APPLICATION_JSON_VALUE)
-public class DebitCardController {
-    private final CardService service;
+@RequestMapping(path = "/debit-cards", produces = MediaType.APPLICATION_JSON_VALUE)
+public class DebitCardsController {
+    private final CardsService service;
 
-    DebitCardController(CardService service) {
+    DebitCardsController(CardsService service) {
         this.service = service;
     }
 

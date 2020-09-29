@@ -10,23 +10,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import nl.rabobank.powerofattorney.application.cards.CardService;
-import nl.rabobank.powerofattorney.domain.card.CardId;
-import nl.rabobank.powerofattorney.domain.card.CreditCard;
+import nl.rabobank.powerofattorney.application.account.AccountsService;
+import nl.rabobank.powerofattorney.domain.account.Account;
+import nl.rabobank.powerofattorney.domain.account.AccountId;
 
 @RestController
-@RequestMapping(path = "/creditcard", produces = MediaType.APPLICATION_JSON_VALUE)
-public class CreditCardController {
-    private final CardService service;
+@RequestMapping(path = "/accounts", produces = MediaType.APPLICATION_JSON_VALUE)
+public class AccountsController {
 
-    CreditCardController(CardService service) {
+    private final AccountsService service;
+
+    AccountsController(AccountsService service) {
         this.service = service;
     }
 
-    @GetMapping("/{cardId}")
+    @GetMapping("/{accountId}")
     @ResponseStatus(HttpStatus.OK)
-    public CreditCard get(@PathVariable String cardId) {
-        return service.getCreditCardForId(new CardId(cardId), getLoggedInUser());
+    public Account get(@PathVariable String accountId) {
+        return service.getForId(new AccountId(accountId), getLoggedInUser());
     }
-
 }

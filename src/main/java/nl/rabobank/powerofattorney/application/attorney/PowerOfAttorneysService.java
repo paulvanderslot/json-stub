@@ -9,11 +9,11 @@ import nl.rabobank.powerofattorney.domain.attorney.PowerOfAttorney;
 import nl.rabobank.powerofattorney.domain.attorney.PowerOfAttorneyId;
 
 @Service
-public class PowerOfAttorneyService {
+public class PowerOfAttorneysService {
 
     private final PowerOfAttorneyRepository repository;
 
-    public PowerOfAttorneyService(PowerOfAttorneyRepository repository) {
+    public PowerOfAttorneysService(PowerOfAttorneyRepository repository) {
         this.repository = repository;
     }
 

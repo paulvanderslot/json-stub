@@ -13,11 +13,11 @@ import nl.rabobank.powerofattorney.domain.exceptions.NotFoundException;
 import nl.rabobank.powerofattorney.domain.exceptions.UnauthorizedException;
 
 @Service
-public class AccountService {
+public class AccountsService {
     private AuthorizationService authorizationService;
     private final AccountRepository repository;
 
-    AccountService(AuthorizationService authorizationService, AccountRepository repository) {
+    AccountsService(AuthorizationService authorizationService, AccountRepository repository) {
         this.authorizationService = authorizationService;
         this.repository = repository;
     }

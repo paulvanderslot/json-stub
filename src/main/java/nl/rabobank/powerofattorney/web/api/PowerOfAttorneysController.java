@@ -9,16 +9,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import nl.rabobank.powerofattorney.application.attorney.PowerOfAttorneyService;
+import nl.rabobank.powerofattorney.application.attorney.PowerOfAttorneysService;
 import nl.rabobank.powerofattorney.domain.attorney.PowerOfAttorneyId;
 
 @RestController
 @RequestMapping(path = "/power-of-attorneys", produces = MediaType.APPLICATION_JSON_VALUE)
-public class PowerOfAttorneyController {
+public class PowerOfAttorneysController {
 
-    private final PowerOfAttorneyService service;
+    private final PowerOfAttorneysService service;
 
-    PowerOfAttorneyController(PowerOfAttorneyService service) {
+    PowerOfAttorneysController(PowerOfAttorneysService service) {
         this.service = service;
     }
 
