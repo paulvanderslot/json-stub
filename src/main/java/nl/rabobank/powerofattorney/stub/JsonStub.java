@@ -10,23 +10,19 @@ import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.common.ClasspathFileSource;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 
-public class JsonStub
-{
+public class JsonStub {
 
     private static final String CONTENT_TYPE_HEADER = "Content-Type";
     private static final String CONTENT_TYPE_JSON = "application/json";
 
-    private static WireMockConfiguration configure()
-    {
+    private static WireMockConfiguration configure() {
         return WireMockConfiguration.wireMockConfig()
                 .fileSource(new ClasspathFileSource("testdata"))
                 .extensions(new CustomResponseTemplateTransformer());
 
     }
 
-    private static void setUp()
-    {
-
+    private static void setUp() {
         stubFor(get(urlMatching("/swagger/.*\\.(js|html|png|css|yaml)"))
                 .willReturn(aResponse()
                         .withBodyFile("static/{{request.path}}")));
@@ -61,9 +57,9 @@ public class JsonStub
         stubFor(get(urlMatching("/accounts/\\d+"))
                 .willReturn(
                         aResponse()
-                            .withBodyFile("accounts/{{request.path.[1]}}.json")
-                            .withFixedDelay(500)
-                            .withHeader(CONTENT_TYPE_HEADER, CONTENT_TYPE_JSON)));
+                                .withBodyFile("accounts/{{request.path.[1]}}.json")
+                                .withFixedDelay(500)
+                                .withHeader(CONTENT_TYPE_HEADER, CONTENT_TYPE_JSON)));
 
         // Get debit card details
         stubFor(get(urlMatching("/debit-cards/\\d+"))
@@ -86,8 +82,7 @@ public class JsonStub
                         .withHeader(CONTENT_TYPE_HEADER, CONTENT_TYPE_JSON)));
     }
 
-    public static void main(final String[] args)
-    {
+    public static void main(final String[] args) {
         new WireMockServer(configure()).start();
         setUp();
     }

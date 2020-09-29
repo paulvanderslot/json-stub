@@ -26,3 +26,19 @@ This awesome web service provides REST API for accessing power of attorney infor
   - If the assignment is unclear, do what you feel is best and focus on the code, not the exercise
   - We look at the quality and readability of code that has been delivered more than if the functionality matches our expectations
   - Impress us!
+
+# How to's
+## Run
+mvn clean spring-boot:run
+
+
+# Steps to take
+- [x] Spring boot plumming
+- [x] Make Rest Resources 
+- [x] Swagger
+
+- [] outside in -> add logic
+- [x] start with POA
+
+- [] Static repositories -> read only
+- [] hexagonal at start

@@ -7,29 +7,25 @@ import com.github.tomakehurst.wiremock.extension.responsetemplating.ResponseTemp
 import com.github.tomakehurst.wiremock.http.Request;
 import com.github.tomakehurst.wiremock.http.ResponseDefinition;
 
-public class CustomResponseTemplateTransformer extends ResponseTemplateTransformer
-{
+public class CustomResponseTemplateTransformer extends ResponseTemplateTransformer {
 
     private final ResponseDefinition fileNotFoundResponse;
 
-    public CustomResponseTemplateTransformer()
-    {
+    public CustomResponseTemplateTransformer() {
         super(true);
         this.fileNotFoundResponse = new ResponseDefinitionBuilder().withStatus(404).build();
     }
 
     @Override
     public ResponseDefinition transform(
-                                        final Request request,
-                                        final ResponseDefinition responseDefinition,
-                                        final FileSource files,
-                                        final Parameters parameters)
-    {
-        try
-        {
+            final Request request,
+            final ResponseDefinition responseDefinition,
+            final FileSource files,
+            final Parameters parameters) {
+        try {
             return super.transform(request, responseDefinition, files, parameters);
-        } catch (final Exception e)
-        {
+        }
+        catch (final Exception e) {
             return fileNotFoundResponse;
         }
     }
