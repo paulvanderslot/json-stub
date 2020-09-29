@@ -31,6 +31,7 @@ public class AccountService {
         if (!authorizationService.isAllowedToView(loggedInUser, account)) {
             throw new UnauthorizedException(loggedInUser.getName() + " is not allowed to view account " + accountId);
         }
+
         return account;
     }
 

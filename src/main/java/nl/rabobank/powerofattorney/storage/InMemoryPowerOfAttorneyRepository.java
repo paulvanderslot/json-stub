@@ -5,16 +5,15 @@ import static nl.rabobank.powerofattorney.domain.Authorization.PAYMENT;
 import static nl.rabobank.powerofattorney.domain.Authorization.VIEW;
 import static nl.rabobank.powerofattorney.domain.attorney.Direction.GIVEN;
 import static nl.rabobank.powerofattorney.domain.attorney.Direction.RECEIVED;
-import static nl.rabobank.powerofattorney.storage.InMemoryAccountRepository.SUPER_DUPER_COMPANY;
-import static nl.rabobank.powerofattorney.storage.InMemoryAccountRepository.SUPER_DUPER_EMPLOYEE;
+import static nl.rabobank.powerofattorney.storage.Constants.SUPER_DUPER_COMPANY;
+import static nl.rabobank.powerofattorney.storage.Constants.SUPER_DUPER_EMPLOYEE;
 
 import java.util.Collection;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import nl.rabobank.powerofattorney.application.PowerOfAttorneyRepository;
-import nl.rabobank.powerofattorney.domain.Authorization;
+import nl.rabobank.powerofattorney.application.attorney.PowerOfAttorneyRepository;
 import nl.rabobank.powerofattorney.domain.account.AccountId;
 import nl.rabobank.powerofattorney.domain.account.User;
 import nl.rabobank.powerofattorney.domain.attorney.PowerOfAttorney;

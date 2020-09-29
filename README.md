@@ -38,9 +38,13 @@ mvn clean spring-boot:run
 - [x] Swagger
 
 - [x] start with Accounts
+- [x] Continue with Cards
+- [] How to deal with groups (Fellowship)
 - [] find out domain logic and aggregates
 - [] outside in -> add logic
 - [] exceptions mapping to http status codes
+- [] test direction of dependencies with archunit
+- [x] blocked cards and ended accounts can be viewed
 
 - [] Static repositories -> read only
 - [x] hexagonal at start

@@ -1,4 +1,4 @@
-package nl.rabobank.powerofattorney.application;
+package nl.rabobank.powerofattorney.application.attorney;
 
 import java.util.Collection;
 

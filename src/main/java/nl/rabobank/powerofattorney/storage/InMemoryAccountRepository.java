@@ -1,5 +1,8 @@
 package nl.rabobank.powerofattorney.storage;
 
+import static nl.rabobank.powerofattorney.storage.Constants.SUPER_DUPER_COMPANY;
+import static nl.rabobank.powerofattorney.storage.Constants.SUPER_DUPER_EMPLOYEE;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -14,8 +17,7 @@ import nl.rabobank.powerofattorney.domain.account.User;
 @Repository
 public class InMemoryAccountRepository implements AccountRepository {
 
-    public static final User SUPER_DUPER_COMPANY = new User("Super duper company");
-    public static final User SUPER_DUPER_EMPLOYEE = new User("Super duper employee");
+
 
     private final List<Account> allAccounts = createAccounts();
 

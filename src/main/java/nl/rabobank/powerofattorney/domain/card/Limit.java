@@ -4,6 +4,6 @@ import lombok.Value;
 
 @Value
 public class Limit {
-    String limit; //money
+    long limit; //money
     Period periodUnit; //money
 }
