@@ -1,9 +1,10 @@
 package nl.rabobank.powerofattorney.domain.card;
 
+import lombok.NonNull;
 import lombok.Value;
 
 @Value
 public class Limit {
     long limit; //money
-    Period periodUnit; //money
+    @NonNull Period periodUnit; //money
 }

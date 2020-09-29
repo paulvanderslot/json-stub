@@ -6,7 +6,7 @@ import nl.rabobank.powerofattorney.domain.account.User;
 
 @Value
 public class SingleGrantee implements Grantee {
-    String name;
+    @NonNull String name;
 
     @Override public boolean isGrantedAccess(@NonNull User user) {
         return name.equals(user.getName());

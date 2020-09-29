@@ -48,7 +48,10 @@ This awesome web service provides REST API for accessing power of attorney infor
 - [] validate domain primitives
 - [x] Static repositories -> read only
 - [x] hexagonal at start
+- [] use authorizations other than VIEW?
 - [] check TODO's
 - [] more test coverage
 - [] endpoint tests with testdata
+- [] UnauthorizedException to AuthorizationService?
+- [] Use Principal instead of fake loggedInUser
 
