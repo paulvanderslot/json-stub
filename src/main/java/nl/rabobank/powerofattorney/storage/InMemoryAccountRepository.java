@@ -12,15 +12,11 @@ import org.springframework.stereotype.Repository;
 import nl.rabobank.powerofattorney.application.account.AccountRepository;
 import nl.rabobank.powerofattorney.domain.account.Account;
 import nl.rabobank.powerofattorney.domain.account.AccountId;
-import nl.rabobank.powerofattorney.domain.account.User;
 
 @Repository
 public class InMemoryAccountRepository implements AccountRepository {
 
-
-
     private final List<Account> allAccounts = createAccounts();
-
 
     @Override public Optional<Account> find(AccountId id) {
         return allAccounts.stream()

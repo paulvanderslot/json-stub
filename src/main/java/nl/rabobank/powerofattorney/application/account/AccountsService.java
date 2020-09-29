@@ -22,7 +22,7 @@ public class AccountsService {
         this.repository = repository;
     }
 
-    public Account getForId(@NonNull AccountId accountId,@NonNull User loggedInUser) {
+    public Account getForId(@NonNull AccountId accountId, @NonNull User loggedInUser) {
         Account account = repository.find(accountId).orElseThrow(notFound(accountId));
 
         if (!authorizationService.isAllowedToView(loggedInUser, account)) {

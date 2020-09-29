@@ -20,7 +20,6 @@ import org.springframework.stereotype.Repository;
 
 import nl.rabobank.powerofattorney.application.attorney.PowerOfAttorneyRepository;
 import nl.rabobank.powerofattorney.domain.account.AccountId;
-import nl.rabobank.powerofattorney.domain.account.User;
 import nl.rabobank.powerofattorney.domain.attorney.GroupGrantee;
 import nl.rabobank.powerofattorney.domain.attorney.PowerOfAttorney;
 import nl.rabobank.powerofattorney.domain.attorney.PowerOfAttorneyId;

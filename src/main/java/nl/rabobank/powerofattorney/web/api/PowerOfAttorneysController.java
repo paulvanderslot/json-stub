@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import nl.rabobank.powerofattorney.application.attorney.PowerOfAttorneysService;
 import nl.rabobank.powerofattorney.domain.attorney.PowerOfAttorney;
 import nl.rabobank.powerofattorney.domain.attorney.PowerOfAttorneyId;
-import nl.rabobank.powerofattorney.web.AuthenticationHelper;
 
 @RestController
 @RequestMapping(path = "/power-of-attorneys", produces = MediaType.APPLICATION_JSON_VALUE)

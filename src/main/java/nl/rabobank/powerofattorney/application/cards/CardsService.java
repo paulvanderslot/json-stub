@@ -6,9 +6,6 @@ import org.springframework.stereotype.Service;
 
 import lombok.NonNull;
 import nl.rabobank.powerofattorney.application.AuthorizationService;
-import nl.rabobank.powerofattorney.application.account.AccountRepository;
-import nl.rabobank.powerofattorney.domain.account.Account;
-import nl.rabobank.powerofattorney.domain.account.AccountId;
 import nl.rabobank.powerofattorney.domain.account.User;
 import nl.rabobank.powerofattorney.domain.card.Card;
 import nl.rabobank.powerofattorney.domain.card.CardId;

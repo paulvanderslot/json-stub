@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import lombok.NonNull;
 import nl.rabobank.powerofattorney.application.AuthorizationService;
-import nl.rabobank.powerofattorney.domain.account.AccountId;
 import nl.rabobank.powerofattorney.domain.account.User;
 import nl.rabobank.powerofattorney.domain.attorney.PowerOfAttorney;
 import nl.rabobank.powerofattorney.domain.attorney.PowerOfAttorneyId;

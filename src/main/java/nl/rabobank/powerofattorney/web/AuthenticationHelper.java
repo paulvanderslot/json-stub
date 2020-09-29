@@ -7,7 +7,7 @@ import nl.rabobank.powerofattorney.domain.account.User;
 public class AuthenticationHelper {
 
     //TODO: get user from principal, for now use static user
-   public static User getLoggedInUser() {
+    public static User getLoggedInUser() {
         return new User("Boromir");
     }
 }

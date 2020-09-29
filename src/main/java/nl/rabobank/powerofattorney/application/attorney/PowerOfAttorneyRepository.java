@@ -10,7 +10,7 @@ import nl.rabobank.powerofattorney.domain.card.CardId;
 
 public interface PowerOfAttorneyRepository {
 
-     Collection<PowerOfAttorney> findAll();
+    Collection<PowerOfAttorney> findAll();
 
      Optional<PowerOfAttorney> findForId(PowerOfAttorneyId id);
 

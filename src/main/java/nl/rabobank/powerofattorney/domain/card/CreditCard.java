@@ -6,7 +6,7 @@ import nl.rabobank.powerofattorney.domain.account.User;
 
 @Value
 @Builder
-public class CreditCard implements Card{
+public class CreditCard implements Card {
     CardId id;
     CardStatus status;
     String cardNumber;

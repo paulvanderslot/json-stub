@@ -11,7 +11,7 @@ public class GroupGrantee implements Grantee {
     String name;
     Collection<User> usersInGroup;
 
-    @Override public boolean isGrantedAccess(@NonNull  User user) {
+    @Override public boolean isGrantedAccess(@NonNull User user) {
         return usersInGroup.contains(user);
     }
 }
