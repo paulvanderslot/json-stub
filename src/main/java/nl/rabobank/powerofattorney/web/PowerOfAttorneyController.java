@@ -25,6 +25,6 @@ public class PowerOfAttorneyController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<PowerOfAttorneyId> get() {
-        return service.findAll();
+        return service.getAllIds();
     }
 }

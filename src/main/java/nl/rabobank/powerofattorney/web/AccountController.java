@@ -1,5 +1,7 @@
 package nl.rabobank.powerofattorney.web;
 
+import static nl.rabobank.powerofattorney.web.AuthenticationHelper.getLoggedInUser;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import nl.rabobank.powerofattorney.application.account.AccountService;
 import nl.rabobank.powerofattorney.domain.account.Account;
 import nl.rabobank.powerofattorney.domain.account.AccountId;
+import nl.rabobank.powerofattorney.domain.account.User;
 
 @RestController
 @RequestMapping(path = "/accounts", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -22,10 +25,9 @@ public class AccountController {
         this.service = service;
     }
 
-    @GetMapping("accounts/{accountId}")
+    @GetMapping("/{accountId}")
     @ResponseStatus(HttpStatus.OK)
     public Account get(@PathVariable String accountId) {
-        //TODO: get user from principal, for now use static user
-        return service.getForId(new AccountId(accountId));
+        return service.getForId(new AccountId(accountId), getLoggedInUser());
     }
 }

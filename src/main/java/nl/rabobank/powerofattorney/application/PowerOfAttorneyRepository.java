@@ -1,11 +1,10 @@
 package nl.rabobank.powerofattorney.application;
 
-import org.springframework.stereotype.Repository;
+import java.util.Collection;
 
-import nl.rabobank.powerofattorney.domain.attorney.PowerOfAttorneyId;
+import nl.rabobank.powerofattorney.domain.attorney.PowerOfAttorney;
 
-@Repository
 public interface PowerOfAttorneyRepository {
 
-     PowerOfAttorneyId findAll();
+     Collection<PowerOfAttorney> findAll();
 }

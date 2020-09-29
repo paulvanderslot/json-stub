@@ -5,12 +5,19 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import nl.rabobank.powerofattorney.domain.attorney.PowerOfAttorney;
 import nl.rabobank.powerofattorney.domain.attorney.PowerOfAttorneyId;
 
 @Service
 public class PowerOfAttorneyService {
 
-    public List<PowerOfAttorneyId> findAll() {
-        return List.of("0001", "0002", "0003", "0004").stream().map(PowerOfAttorneyId::new).collect(Collectors.toList());
+    private final PowerOfAttorneyRepository repository;
+
+    public PowerOfAttorneyService(PowerOfAttorneyRepository repository) {
+        this.repository = repository;
+    }
+
+    public List<PowerOfAttorneyId> getAllIds() {
+        return repository.findAll().stream().map(PowerOfAttorney::getId).collect(Collectors.toList());
     }
 }

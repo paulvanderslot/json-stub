@@ -9,7 +9,6 @@ import lombok.Value;
 @Value
 @Builder
 public class Account {
-
     @NonNull AccountId id;
     @NonNull User owner; // can have multiple accounts
     long balance; // money
