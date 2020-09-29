@@ -19,7 +19,7 @@ import nl.rabobank.powerofattorney.domain.exceptions.UnauthorizedException;
 
 @Service
 public class CardsService {
-    private AuthorizationService authorizationService;
+    private final AuthorizationService authorizationService;
     private final CardRepository repository;
 
     CardsService(AuthorizationService authorizationService, CardRepository repository) {
@@ -27,13 +27,13 @@ public class CardsService {
         this.repository = repository;
     }
 
-    public CreditCard getCreditCardForId(CardId cardId, User loggedInUser) {
+    public CreditCard getCreditCardForId(@NonNull CardId cardId, @NonNull User loggedInUser) {
         CreditCard creditCard = repository.findCreditCardFor(cardId).orElseThrow(notFound(cardId));
         checkAuthorization(loggedInUser, creditCard);
         return creditCard;
     }
 
-    public DebitCard getDebitCardForId(CardId cardId, User loggedInUser) {
+    public DebitCard getDebitCardForId(@NonNull CardId cardId, @NonNull User loggedInUser) {
         DebitCard debitCard = repository.findDebitCardFor(cardId).orElseThrow(notFound(cardId));
         checkAuthorization(loggedInUser, debitCard);
         return debitCard;

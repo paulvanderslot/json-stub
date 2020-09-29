@@ -30,12 +30,20 @@ public class InMemoryPowerOfAttorneyRepository implements PowerOfAttorneyReposit
         return allPowerOfAttorneys;
     }
 
-    @Override public Optional<PowerOfAttorney> findWithCardId(CardId cardId) {
+    @Override public Optional<PowerOfAttorney> findForId(PowerOfAttorneyId id) {
+        return allPowerOfAttorneys.stream().filter(matchingId(id)).findAny();
+    }
+
+    @Override public Optional<PowerOfAttorney> findForCardId(CardId cardId) {
         return allPowerOfAttorneys.stream().filter(matchingCardId(cardId)).findAny();
     }
 
-    @Override public Optional<PowerOfAttorney> findWithAccountId(AccountId accountId) {
+    @Override public Optional<PowerOfAttorney> findForAccountId(AccountId accountId) {
         return allPowerOfAttorneys.stream().filter(matchingAccountId(accountId)).findAny();
+    }
+
+    private Predicate<? super PowerOfAttorney> matchingId(PowerOfAttorneyId id) {
+        return poa -> poa.getId().equals(id);
     }
 
     private Predicate<PowerOfAttorney> matchingCardId(CardId cardId) {

@@ -14,7 +14,7 @@ import nl.rabobank.powerofattorney.domain.exceptions.UnauthorizedException;
 
 @Service
 public class AccountsService {
-    private AuthorizationService authorizationService;
+    private final AuthorizationService authorizationService;
     private final AccountRepository repository;
 
     AccountsService(AuthorizationService authorizationService, AccountRepository repository) {
@@ -22,7 +22,7 @@ public class AccountsService {
         this.repository = repository;
     }
 
-    public Account getForId(@NonNull AccountId accountId, User loggedInUser) {
+    public Account getForId(@NonNull AccountId accountId,@NonNull User loggedInUser) {
         Account account = repository.find(accountId).orElseThrow(notFound(accountId));
 
         if (!authorizationService.isAllowedToView(loggedInUser, account)) {
@@ -32,7 +32,7 @@ public class AccountsService {
         return account;
     }
 
-    private Supplier<NotFoundException> notFound(@NonNull AccountId accountId) {
+    private Supplier<NotFoundException> notFound(AccountId accountId) {
         return () -> new NotFoundException("Account with " + accountId + " not found");
     }
 }

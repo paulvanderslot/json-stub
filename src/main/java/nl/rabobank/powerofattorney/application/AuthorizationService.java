@@ -2,6 +2,8 @@ package nl.rabobank.powerofattorney.application;
 
 import static nl.rabobank.powerofattorney.domain.Authorization.VIEW;
 
+import java.util.Collection;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.springframework.stereotype.Service;
@@ -11,7 +13,6 @@ import nl.rabobank.powerofattorney.domain.account.Account;
 import nl.rabobank.powerofattorney.domain.account.User;
 import nl.rabobank.powerofattorney.domain.attorney.PowerOfAttorney;
 import nl.rabobank.powerofattorney.domain.card.Card;
-import nl.rabobank.powerofattorney.domain.card.CreditCard;
 
 @Service
 public class AuthorizationService {
@@ -32,18 +33,29 @@ public class AuthorizationService {
         if (loggedInUser.equals(card.getCardHolder())) {
             return true;
         }
-
         return hasPowerOfAttorneyToView(loggedInUser, card);
     }
 
+    public boolean isAllowedToView(User loggedInUser, PowerOfAttorney powerOfAttorney) {
+        return isGrantorOrGrantee(loggedInUser, powerOfAttorney);
+    }
+
+    private boolean isGrantorOrGrantee(User loggedInUser, PowerOfAttorney powerOfAttorney) {
+        return loggedInUser.equals(powerOfAttorney.getGrantor()) || loggedInUser.equals(powerOfAttorney.getGrantee());
+    }
+
     private boolean hasPowerOfAttorneyToView(User loggedInUser, Account account) {
-        return powerOfAttorneyRepository.findWithAccountId(account.getId()).stream()
-                .filter(authorizedToView())
-                .anyMatch(isGrantedAccess(loggedInUser));
+        Optional<PowerOfAttorney> poaWithAccountId = powerOfAttorneyRepository.findForAccountId(account.getId());
+        return isAuthorizedToViewAndGrantedAccess(poaWithAccountId, loggedInUser);
     }
 
     private boolean hasPowerOfAttorneyToView(User loggedInUser, Card card) {
-        return powerOfAttorneyRepository.findWithCardId(card.getId()).stream()
+        Optional<PowerOfAttorney> poaWithCardId = powerOfAttorneyRepository.findForCardId(card.getId());
+        return isAuthorizedToViewAndGrantedAccess(poaWithCardId, loggedInUser);
+    }
+
+    private boolean isAuthorizedToViewAndGrantedAccess(Optional<PowerOfAttorney> powerOfAttorney, User loggedInUser) {
+        return powerOfAttorney.stream()
                 .filter(authorizedToView())
                 .anyMatch(isGrantedAccess(loggedInUser));
     }
@@ -55,6 +67,5 @@ public class AuthorizationService {
     private Predicate<PowerOfAttorney> authorizedToView() {
         return poa -> poa.getAuthorizations().contains(VIEW);
     }
-
 
 }

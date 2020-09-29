@@ -39,12 +39,14 @@ mvn clean spring-boot:run
 
 - [x] start with Accounts
 - [x] Continue with Cards
+- [x] Power of Attorneys
 - [] How to deal with groups (Fellowship)
 - [] find out domain logic and aggregates
 - [] outside in -> add logic
 - [] exceptions mapping to http status codes
 - [] test direction of dependencies with archunit
 - [x] blocked cards and ended accounts can be viewed
+- [] validate domain primitives
 
 - [] Static repositories -> read only
 - [x] hexagonal at start
