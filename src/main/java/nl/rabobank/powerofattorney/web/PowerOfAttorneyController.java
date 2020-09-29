@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import nl.rabobank.powerofattorney.application.PowerOfAttorneyService;
-import nl.rabobank.powerofattorney.domain.PowerOfAtterneyId;
+import nl.rabobank.powerofattorney.domain.attorney.PowerOfAttorneyId;
 
 @RestController
 @RequestMapping(path = "/power-of-attorneys", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -24,7 +24,7 @@ public class PowerOfAttorneyController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<PowerOfAtterneyId> get() {
+    public List<PowerOfAttorneyId> get() {
         return service.findAll();
     }
 }

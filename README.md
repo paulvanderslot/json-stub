@@ -37,8 +37,10 @@ mvn clean spring-boot:run
 - [x] Make Rest Resources 
 - [x] Swagger
 
+- [] start with Accounts
+- [] find out domain logic and aggregates
 - [] outside in -> add logic
-- [x] start with POA
+
 
 - [] Static repositories -> read only
 - [] hexagonal at start
