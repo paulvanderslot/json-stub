@@ -54,6 +54,12 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>com.tngtech.archunit</groupId>
+            <artifactId>archunit-junit5-engine</artifactId>
+            <version>0.14.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>com.github.tomakehurst</groupId>
             <artifactId>wiremock</artifactId>
             <version>2.23.2</version>

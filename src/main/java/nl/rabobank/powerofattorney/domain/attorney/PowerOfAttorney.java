@@ -14,14 +14,14 @@ import nl.rabobank.powerofattorney.domain.card.CardId;
 @Builder
 public class PowerOfAttorney {
     @NonNull PowerOfAttorneyId id;
-    @NonNull User grantor; //account owner (niet nodig in model, wel in API)
+    @NonNull User grantor;
     @NonNull Grantee grantee;
-    @NonNull AccountId accountId; //account id of grantor
+    @NonNull AccountId accountId;
     @NonNull Direction direction; //unclear if this field matters. Grantor and accountId always seem to match.
     @NonNull Collection<Authorization> authorizations;
-    @NonNull Collection<CardId> cardIds; //only when debit card authorizations
+    @NonNull Collection<CardId> cardIds; //only when debitcard/creditcard authorizations
 
-    public boolean isGrantedAccess(User user) {
+    public boolean isGrantedAccess(@NonNull User user) {
         return grantor.equals(user) || grantee.isGrantedAccess(user);
     }
 }
