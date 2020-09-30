@@ -1,4 +1,4 @@
-package nl.rabobank.powerofattorney.web;
+package nl.rabobank.powerofattorney.web.exceptionhandling;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +19,11 @@ public class GlobalExceptionHandler {
     // Normally IllegalArgumentException but @NonNull (lombok) throws NullPointerException
     @ExceptionHandler(NullPointerException.class)
     public ResponseEntity<ExceptionResponse> nullInput(NullPointerException ex) {
+        return makeResponse(HttpStatus.UNPROCESSABLE_ENTITY, ex);
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ExceptionResponse> illegalArgument(IllegalArgumentException ex) {
         return makeResponse(HttpStatus.UNPROCESSABLE_ENTITY, ex);
     }
 

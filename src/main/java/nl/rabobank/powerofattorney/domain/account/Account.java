@@ -14,7 +14,7 @@ public class Account {
     @NonNull User owner; // can have multiple accounts
     long balance; // money
     @NonNull LocalDate createDate;
-    LocalDate closedDate; //optional
+    LocalDate closedDate;
 
     public Optional<LocalDate> getClosedDate() {
         return Optional.ofNullable(closedDate);

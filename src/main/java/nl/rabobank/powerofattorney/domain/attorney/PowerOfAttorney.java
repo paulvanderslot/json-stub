@@ -24,4 +24,5 @@ public class PowerOfAttorney {
     public boolean isGrantedAccess(@NonNull User user) {
         return grantor.equals(user) || grantee.isGrantedAccess(user);
     }
+
 }

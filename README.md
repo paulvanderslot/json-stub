@@ -41,15 +41,17 @@ This awesome web service provides REST API for accessing power of attorney infor
 - [x] How to deal with groups (Fellowship)
 - [x] find out domain logic and aggregates
 - [x] outside in -> add logic
-- [] transforming to the right structure
+- [x] transforming to the right structure
 - [x] exceptions mapping to http status codes
 - [x] test direction of dependencies with archunit
 - [x] blocked cards and ended accounts can be viewed
 - [] validate domain primitives
 - [x] Static repositories -> read only
 - [x] hexagonal at start
-- [] use authorizations other than VIEW?
-- [] check TODO's
+- [] Check if aggregates dont know to much of each other
+- [] use authorizations other than VIEW? 
+- [] Money/Balance domain primitive
+- [x] check TODO's
 - [] more test coverage
 - [] endpoint tests with testdata
 - [] UnauthorizedException to AuthorizationService?

@@ -24,12 +24,14 @@ public class AccountsService {
 
     public Account getForId(@NonNull AccountId accountId, @NonNull User loggedInUser) {
         Account account = repository.find(accountId).orElseThrow(notFound(accountId));
-
-        if (!authorizationService.isAllowedToView(loggedInUser, account)) {
-            throw new UnauthorizedException(loggedInUser.getName() + " is not allowed to view account " + accountId);
-        }
-
+        checkAuthorization(loggedInUser, account);
         return account;
+    }
+
+    private void checkAuthorization(User loggedInUser, Account account) {
+        if (!authorizationService.isAllowedToView(loggedInUser, account)) {
+            throw new UnauthorizedException(loggedInUser.getName() + " is not allowed to view account " + account.getId());
+        }
     }
 
     private Supplier<NotFoundException> notFound(AccountId accountId) {

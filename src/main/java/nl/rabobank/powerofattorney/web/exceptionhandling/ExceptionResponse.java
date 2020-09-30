@@ -1,4 +1,4 @@
-package nl.rabobank.powerofattorney.web;
+package nl.rabobank.powerofattorney.web.exceptionhandling;
 
 import org.springframework.http.HttpStatus;
 

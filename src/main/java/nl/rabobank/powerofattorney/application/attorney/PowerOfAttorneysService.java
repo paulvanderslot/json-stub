@@ -31,13 +31,16 @@ public class PowerOfAttorneysService {
 
     public PowerOfAttorney getForId(@NonNull PowerOfAttorneyId powerOfAttorneyId, @NonNull User loggedInUser) {
         PowerOfAttorney powerOfAttorney = repository.findForId(powerOfAttorneyId).orElseThrow(notFound(powerOfAttorneyId));
+        checkAuthorization(powerOfAttorneyId, loggedInUser, powerOfAttorney);
+        return powerOfAttorney;
+    }
 
+    private void checkAuthorization(@NonNull PowerOfAttorneyId powerOfAttorneyId, @NonNull User loggedInUser,
+            PowerOfAttorney powerOfAttorney) {
         if (!authorizationService.isAllowedToView(loggedInUser, powerOfAttorney)) {
             throw new UnauthorizedException(
                     loggedInUser.getName() + " is not allowed to view Power Of Attorney " + powerOfAttorneyId);
         }
-
-        return powerOfAttorney;
     }
 
     private Supplier<NotFoundException> notFound(PowerOfAttorneyId powerOfAttorneyId) {
