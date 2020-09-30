@@ -36,11 +36,7 @@ public class AuthorizationService {
     }
 
     public boolean isAllowedToView(User loggedInUser, PowerOfAttorney powerOfAttorney) {
-        return isGrantorOrGrantee(loggedInUser, powerOfAttorney);
-    }
-
-    private boolean isGrantorOrGrantee(User loggedInUser, PowerOfAttorney powerOfAttorney) {
-        return loggedInUser.equals(powerOfAttorney.getGrantor()) || loggedInUser.equals(powerOfAttorney.getGrantee());
+        return powerOfAttorney.isGrantedAccess(loggedInUser);
     }
 
     private boolean hasPowerOfAttorneyToView(User loggedInUser, Account account) {
@@ -56,11 +52,7 @@ public class AuthorizationService {
     private boolean isAuthorizedToViewAndGrantedAccess(Optional<PowerOfAttorney> powerOfAttorney, User loggedInUser) {
         return powerOfAttorney.stream()
                 .filter(authorizedToView())
-                .anyMatch(poa -> isGrantedAccess(loggedInUser, poa));
-    }
-
-    private boolean isGrantedAccess(User loggedInUser, PowerOfAttorney poa) {
-        return poa.getGrantee().isGrantedAccess(loggedInUser);
+                .anyMatch(poa -> poa.isGrantedAccess(loggedInUser));
     }
 
     private Predicate<PowerOfAttorney> authorizedToView() {

@@ -54,4 +54,5 @@ This awesome web service provides REST API for accessing power of attorney infor
 - [] endpoint tests with testdata
 - [] UnauthorizedException to AuthorizationService?
 - [] Use Principal instead of fake loggedInUser
+- [] effect of result when things like Blocked/Authorization on card/account inactive etc?
 

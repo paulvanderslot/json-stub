@@ -20,4 +20,8 @@ public class PowerOfAttorney {
     @NonNull Direction direction; //unclear if this field matters. Grantor and accountId always seem to match.
     @NonNull Collection<Authorization> authorizations;
     @NonNull Collection<CardId> cardIds; //only when debit card authorizations
+
+    public boolean isGrantedAccess(User user) {
+        return grantor.equals(user) || grantee.isGrantedAccess(user);
+    }
 }
