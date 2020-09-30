@@ -20,7 +20,7 @@ import com.github.jknack.handlebars.internal.Files;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class PowerOfAttorneyIT {
+public class PowerOfAttorneyIntegrationTest {
 
     @Autowired
     private MockMvc mvc;
