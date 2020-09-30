@@ -6,5 +6,5 @@ import lombok.Value;
 @Value
 public class Limit {
     long limit; //money
-    @NonNull Period periodUnit; //money
+    @NonNull Period periodUnit;
 }

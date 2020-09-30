@@ -9,6 +9,7 @@ import nl.rabobank.powerofattorney.application.AuthorizationService;
 import nl.rabobank.powerofattorney.domain.account.Account;
 import nl.rabobank.powerofattorney.domain.account.AccountId;
 import nl.rabobank.powerofattorney.domain.account.User;
+import nl.rabobank.powerofattorney.domain.exceptions.InactiveEntityException;
 import nl.rabobank.powerofattorney.domain.exceptions.NotFoundException;
 import nl.rabobank.powerofattorney.domain.exceptions.UnauthorizedException;
 
@@ -25,12 +26,19 @@ public class AccountsService {
     public Account getForId(@NonNull AccountId accountId, @NonNull User loggedInUser) {
         Account account = repository.find(accountId).orElseThrow(notFound(accountId));
         checkAuthorization(loggedInUser, account);
+        validateIsActive(account);
         return account;
     }
 
     private void checkAuthorization(User loggedInUser, Account account) {
         if (!authorizationService.isAllowedToView(loggedInUser, account)) {
             throw new UnauthorizedException(loggedInUser.getName() + " is not allowed to view account " + account.getId());
+        }
+    }
+
+    private void validateIsActive(Account account) {
+        if (!account.isActive()) {
+            throw new InactiveEntityException("Account with " + account.getId() + " is closed");
         }
     }
 

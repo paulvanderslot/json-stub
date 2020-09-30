@@ -6,4 +6,6 @@ public interface Card {
     CardId getId();
 
     User getCardHolder();
+
+    boolean isActive();
 }

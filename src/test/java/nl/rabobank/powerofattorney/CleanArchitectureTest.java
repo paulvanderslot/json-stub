@@ -1,6 +1,6 @@
 package nl.rabobank.powerofattorney;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.tngtech.archunit.core.domain.JavaClasses;
 import com.tngtech.archunit.core.importer.ClassFileImporter;
@@ -35,6 +35,7 @@ public class CleanArchitectureTest {
                 .whereLayer(APPLICATION_LAYER).mayOnlyBeAccessedByLayers(STORAGE_LAYER, WEB_LAYER)
                 .whereLayer(STORAGE_LAYER).mayOnlyBeAccessedByLayers()
                 .whereLayer(CONFIG_LAYER).mayOnlyBeAccessedByLayers()
+                .whereLayer(WEB_LAYER).mayOnlyBeAccessedByLayers()
                 .check(importedClasses);
     }
 }

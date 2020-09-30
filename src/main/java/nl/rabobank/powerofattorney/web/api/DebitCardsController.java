@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import nl.rabobank.powerofattorney.application.cards.CardsService;
+import nl.rabobank.powerofattorney.application.card.CardsService;
 import nl.rabobank.powerofattorney.domain.card.CardId;
 import nl.rabobank.powerofattorney.domain.card.DebitCard;
 import nl.rabobank.powerofattorney.web.dto.DebitCardDto;

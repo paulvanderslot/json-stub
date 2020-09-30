@@ -16,4 +16,8 @@ public class DebitCard implements Card {
     @NonNull Limit atmLimit;
     @NonNull Limit posLimit;
     boolean contactless;
+
+    @Override public boolean isActive() {
+        return status.equals(CardStatus.ACTIVE);
+    }
 }

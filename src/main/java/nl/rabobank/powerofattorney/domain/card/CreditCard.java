@@ -14,4 +14,8 @@ public class CreditCard implements Card {
     long sequenceNumber;
     @NonNull User cardHolder;
     long monthlyLimit; // money
+
+    @Override public boolean isActive() {
+        return status.equals(CardStatus.ACTIVE);
+    }
 }

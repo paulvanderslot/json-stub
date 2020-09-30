@@ -1,4 +1,4 @@
-package nl.rabobank.powerofattorney.application.cards;
+package nl.rabobank.powerofattorney.application.card;
 
 import java.util.Optional;
 

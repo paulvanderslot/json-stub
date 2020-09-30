@@ -13,7 +13,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
-import nl.rabobank.powerofattorney.application.cards.CardRepository;
+import nl.rabobank.powerofattorney.application.card.CardRepository;
 import nl.rabobank.powerofattorney.domain.account.User;
 import nl.rabobank.powerofattorney.domain.card.CardId;
 import nl.rabobank.powerofattorney.domain.card.CardStatus;

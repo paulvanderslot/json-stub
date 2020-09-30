@@ -19,4 +19,8 @@ public class Account {
     public Optional<LocalDate> getClosedDate() {
         return Optional.ofNullable(closedDate);
     }
+
+    public boolean isActive() {
+        return closedDate == null;
+    }
 }
