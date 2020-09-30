@@ -1,5 +1,5 @@
 {
-  "id": "{{request.path.[1]}}",
+  "id": "0001",
   "grantor": "Super duper company",
   "grantee": "Fellowship of the ring",
   "account": "NL23RABO123456789",

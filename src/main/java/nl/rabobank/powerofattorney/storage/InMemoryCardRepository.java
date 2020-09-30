@@ -38,7 +38,7 @@ public class InMemoryCardRepository implements CardRepository {
     private List<CreditCard> createCreditCards() {
         return List.of(CreditCard.builder()
                 .id(new CardId("3333"))
-                .cardNumber("5075")
+                .cardNumber(5075)
                 .cardHolder(BOROMIR)
                 .sequenceNumber(1)
                 .status(ACTIVE)
@@ -50,7 +50,7 @@ public class InMemoryCardRepository implements CardRepository {
     private List<DebitCard> createDebitCards() {
         return List.of(DebitCard.builder()
                         .id(new CardId("1111"))
-                        .cardNumber("1234")
+                        .cardNumber(1234)
                         .cardHolder(FRODO)
                         .sequenceNumber(5)
                         .status(ACTIVE)
@@ -60,7 +60,7 @@ public class InMemoryCardRepository implements CardRepository {
                         .build(),
                 DebitCard.builder()
                         .id(new CardId("2222"))
-                        .cardNumber("6527")
+                        .cardNumber(6527)
                         .cardHolder(ARAGORN)
                         .sequenceNumber(1)
                         .status(ACTIVE)
@@ -70,7 +70,7 @@ public class InMemoryCardRepository implements CardRepository {
                         .build(),
                 DebitCard.builder()
                         .id(new CardId("4444"))
-                        .cardNumber("1111")
+                        .cardNumber(1111)
                         .cardHolder(Constants.SUPER_DUPER_EMPLOYEE)
                         .sequenceNumber(32)
                         .status(ACTIVE)
@@ -80,7 +80,7 @@ public class InMemoryCardRepository implements CardRepository {
                         .build(),
                 DebitCard.builder()
                         .id(new CardId("5555"))
-                        .cardNumber("5678")
+                        .cardNumber(5678)
                         .cardHolder(new User("Darth Vader"))
                         .sequenceNumber(5)
                         .status(CardStatus.BLOCKED)

@@ -27,17 +27,49 @@ public class PowerOfAttorneyIT {
 
     @Value("classpath:poa/poa.json")
     private Resource allPoa;
+    @Value("classpath:poa/0001.json")
+    private Resource onePoa;
+    @Value("classpath:accounts/123456789.json")
+    private Resource oneAccount;
+    @Value("classpath:credit-card/3333.json")
+    private Resource oneCreditCard;
+    @Value("classpath:debit-card/1111.json")
+    private Resource oneDebitCard;
 
     private final ObjectMapper mapper = new ObjectMapper();
 
     @Test
-    void allPowerOfAttorneys() throws Exception {
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get("/power-of-attorneys"))
+    void getAllPowerOfAttorneys() throws Exception {
+        assertResultEqualToFile("/power-of-attorneys", allPoa);
+    }
+
+    @Test
+    void getOnePowerOfAttorney() throws Exception {
+        assertResultEqualToFile("/power-of-attorneys/0001", onePoa);
+    }
+
+    @Test
+    void getOneAccount() throws Exception {
+        assertResultEqualToFile("/accounts/123456789", oneAccount);
+    }
+
+    @Test
+    void getOneCreditCard() throws Exception {
+        assertResultEqualToFile("/credit-cards/3333", oneCreditCard);
+    }
+
+    @Test
+    void getOneDebitCard() throws Exception {
+        assertResultEqualToFile("/debit-cards/1111", oneDebitCard);
+    }
+
+    private void assertResultEqualToFile(String restUrl, Resource jsonResource) throws Exception {
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(restUrl))
                 .andExpect(status().isOk())
                 .andReturn();
 
         String actual = mvcResult.getResponse().getContentAsString();
-        String expected = Files.read(allPoa.getFile(), Charset.defaultCharset());
+        String expected = Files.read(jsonResource.getFile(), Charset.defaultCharset());
 
         assertEquals(mapper.readTree(expected), mapper.readTree(actual));
     }

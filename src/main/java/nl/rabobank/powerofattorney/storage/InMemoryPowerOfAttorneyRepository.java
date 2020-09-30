@@ -1,6 +1,5 @@
 package nl.rabobank.powerofattorney.storage;
 
-import static nl.rabobank.powerofattorney.domain.Authorization.DEBIT_CARD;
 import static nl.rabobank.powerofattorney.domain.Authorization.PAYMENT;
 import static nl.rabobank.powerofattorney.domain.Authorization.VIEW;
 import static nl.rabobank.powerofattorney.domain.attorney.Direction.GIVEN;
@@ -19,12 +18,15 @@ import java.util.function.Predicate;
 import org.springframework.stereotype.Repository;
 
 import nl.rabobank.powerofattorney.application.attorney.PowerOfAttorneyRepository;
+import nl.rabobank.powerofattorney.domain.Authorization;
 import nl.rabobank.powerofattorney.domain.account.AccountId;
 import nl.rabobank.powerofattorney.domain.attorney.GroupGrantee;
 import nl.rabobank.powerofattorney.domain.attorney.PowerOfAttorney;
 import nl.rabobank.powerofattorney.domain.attorney.PowerOfAttorneyId;
 import nl.rabobank.powerofattorney.domain.attorney.SingleGrantee;
 import nl.rabobank.powerofattorney.domain.card.CardId;
+import nl.rabobank.powerofattorney.domain.card.CardSummary;
+import nl.rabobank.powerofattorney.domain.card.CardType;
 
 @Repository
 public class InMemoryPowerOfAttorneyRepository implements PowerOfAttorneyRepository {
@@ -51,7 +53,7 @@ public class InMemoryPowerOfAttorneyRepository implements PowerOfAttorneyReposit
     }
 
     private Predicate<PowerOfAttorney> matchingCardId(CardId cardId) {
-        return poa -> poa.getCardIds().contains(cardId);
+        return poa -> poa.getCardSummaries().stream().map(CardSummary::getCardId).anyMatch(id -> id.equals(cardId));
     }
 
     private Predicate<PowerOfAttorney> matchingAccountId(AccountId accountId) {
@@ -67,8 +69,10 @@ public class InMemoryPowerOfAttorneyRepository implements PowerOfAttorneyReposit
                                 List.of(BOROMIR, ARAGORN, FRODO)))
                         .accountId(new AccountId("123456789"))
                         .direction(GIVEN)
-                        .authorizations(List.of(VIEW, PAYMENT, DEBIT_CARD))
-                        .cardIds(List.of(new CardId("1111"), new CardId("2222"), new CardId("3333")))
+                        .authorizations(List.of(Authorization.DEBIT_CARD, VIEW, PAYMENT))
+                        .cardSummaries(List.of(new CardSummary(new CardId("1111"), CardType.DEBIT_CARD),
+                                new CardSummary(new CardId("2222"), CardType.DEBIT_CARD),
+                                new CardSummary(new CardId("3333"), CardType.CREDIT_CARD)))
                         .build()
                 , PowerOfAttorney.builder()
                         .id(new PowerOfAttorneyId("0002"))
@@ -76,8 +80,8 @@ public class InMemoryPowerOfAttorneyRepository implements PowerOfAttorneyReposit
                         .grantee(new SingleGrantee(SUPER_DUPER_EMPLOYEE.getName()))
                         .accountId(new AccountId("987654321"))
                         .direction(GIVEN)
-                        .authorizations(List.of(VIEW, PAYMENT, DEBIT_CARD))
-                        .cardIds(List.of(new CardId("4444")))
+                        .authorizations(List.of(Authorization.DEBIT_CARD, VIEW, PAYMENT))
+                        .cardSummaries(List.of(new CardSummary(new CardId("4444"), CardType.DEBIT_CARD)))
                         .build()
                 , PowerOfAttorney.builder()
                         .id(new PowerOfAttorneyId("0003"))
@@ -86,7 +90,7 @@ public class InMemoryPowerOfAttorneyRepository implements PowerOfAttorneyReposit
                         .accountId(new AccountId("343434343"))
                         .direction(GIVEN)
                         .authorizations(List.of(VIEW, PAYMENT))
-                        .cardIds(List.of())
+                        .cardSummaries(List.of())
                         .build()
                 , PowerOfAttorney.builder()
                         .id(new PowerOfAttorneyId("0004"))
@@ -95,7 +99,7 @@ public class InMemoryPowerOfAttorneyRepository implements PowerOfAttorneyReposit
                         .accountId(new AccountId("123123123"))
                         .direction(RECEIVED)
                         .authorizations(List.of(VIEW, PAYMENT))
-                        .cardIds(List.of())
+                        .cardSummaries(List.of())
                         .build());
     }
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import nl.rabobank.powerofattorney.application.account.AccountsService;
 import nl.rabobank.powerofattorney.domain.account.Account;
 import nl.rabobank.powerofattorney.domain.account.AccountId;
+import nl.rabobank.powerofattorney.web.dto.AccountDto;
 
 @RestController
 @RequestMapping(path = "/accounts", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -26,7 +27,8 @@ public class AccountsController {
 
     @GetMapping("/{accountId}")
     @ResponseStatus(HttpStatus.OK)
-    public Account get(@PathVariable String accountId) {
-        return service.getForId(new AccountId(accountId), getLoggedInUser());
+    public AccountDto get(@PathVariable String accountId) {
+        Account account = service.getForId(new AccountId(accountId), getLoggedInUser());
+        return new AccountDto(account);
     }
 }

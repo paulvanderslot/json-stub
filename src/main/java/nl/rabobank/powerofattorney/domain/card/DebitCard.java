@@ -10,8 +10,8 @@ import nl.rabobank.powerofattorney.domain.account.User;
 public class DebitCard implements Card {
     @NonNull CardId id;
     @NonNull CardStatus status;
-    @NonNull String cardNumber;
-    int sequenceNumber;
+    long cardNumber;
+    long sequenceNumber;
     @NonNull User cardHolder;
     @NonNull Limit atmLimit;
     @NonNull Limit posLimit;

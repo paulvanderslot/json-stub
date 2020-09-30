@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import nl.rabobank.powerofattorney.application.cards.CardsService;
 import nl.rabobank.powerofattorney.domain.card.CardId;
 import nl.rabobank.powerofattorney.domain.card.CreditCard;
+import nl.rabobank.powerofattorney.web.dto.CreditCardDto;
 
 @RestController
 @RequestMapping(path = "/credit-cards", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -25,8 +26,9 @@ public class CreditCardsController {
 
     @GetMapping("/{cardId}")
     @ResponseStatus(HttpStatus.OK)
-    public CreditCard get(@PathVariable String cardId) {
-        return service.getCreditCardForId(new CardId(cardId), getLoggedInUser());
+    public CreditCardDto get(@PathVariable String cardId) {
+        CreditCard creditCard = service.getCreditCardForId(new CardId(cardId), getLoggedInUser());
+        return new CreditCardDto(creditCard);
     }
 
 }

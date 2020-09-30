@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import nl.rabobank.powerofattorney.application.attorney.PowerOfAttorneysService;
 import nl.rabobank.powerofattorney.domain.attorney.PowerOfAttorney;
 import nl.rabobank.powerofattorney.domain.attorney.PowerOfAttorneyId;
+import nl.rabobank.powerofattorney.web.dto.PowerOfAttorneyDto;
 
 @RestController
 @RequestMapping(path = "/power-of-attorneys", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -34,7 +35,8 @@ public class PowerOfAttorneysController {
 
     @GetMapping("/{powerOfAttorneyId}")
     @ResponseStatus(HttpStatus.OK)
-    public PowerOfAttorney getId(@PathVariable String powerOfAttorneyId) {
-        return service.getForId(new PowerOfAttorneyId(powerOfAttorneyId), getLoggedInUser());
+    public PowerOfAttorneyDto getId(@PathVariable String powerOfAttorneyId) {
+        PowerOfAttorney powerOfAttorney = service.getForId(new PowerOfAttorneyId(powerOfAttorneyId), getLoggedInUser());
+        return new PowerOfAttorneyDto(powerOfAttorney);
     }
 }

@@ -1,5 +1,5 @@
 {
-  "id": "{{request.path.[1]}}",
+  "id": "1111",
   "status": "ACTIVE",
   "cardNumber": 1234,
   "sequenceNumber": 5,

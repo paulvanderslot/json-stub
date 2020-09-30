@@ -85,7 +85,7 @@ class AuthorizationServiceTest {
                 .grantor(OTHER)
                 .accountId(ACCOUNT_ID)
                 .direction(Direction.GIVEN)
-                .cardIds(List.of())
+                .cardSummaries(List.of())
                 .authorizations(List.of(Authorization.VIEW))
                 .build();
     }
