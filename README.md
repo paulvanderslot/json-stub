@@ -30,6 +30,7 @@ This awesome web service provides REST API for accessing power of attorney infor
 # How to's
 - Start app: 'mvn clean spring-boot:run'
 - Swagger: 'http://localhost:8080/swagger-ui.html'
+- For now, authentication is not implemented. In AuthenticationHelper you can change the 'logged in user'.
 
 # Steps to take
 - [x] Spring boot plumming
